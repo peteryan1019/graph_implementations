@@ -178,7 +178,9 @@ Edge* getMSTprim(Graph* graph, int startVertex){
       }
     }
   }
-  return records->tree;
+  Edge * tree = records->tree;
+  deleteRecords(records);
+  return tree;
 }
 
 Edge* getDistanceTreeDijkstra(Graph* graph, int startVertex){

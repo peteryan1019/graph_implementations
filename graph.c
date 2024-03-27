@@ -121,19 +121,6 @@ void deleteEdgeList(EdgeList* head){
 }
 
 
-// void deleteVertex(Vertex* vertex){
-// /* Frees memory allocated for 'vertex' including its adjacency list.
-//  */
-//   EdgeList * p = NULL;
-//   EdgeList * q = NULL;
-//   for(p=vertex->adjList; p!=NULL; p = p->next){
-//     q = p->next;
-//     free(p);
-//     p = q;
-//   }
-//   free(vertex);
-// }
-
 void deleteVertex(Vertex* vertex){
   if (vertex == NULL) return;  // Safe-guard against NULL input
 
