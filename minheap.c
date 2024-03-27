@@ -98,7 +98,13 @@ void bubbleUp(MinHeap* heap, int nodeIndex){
  * 'nodeIndex', if 'nodeIndex' is a valid index for heap. Has no effect
  * otherwise.
  */
+       if(invalid_index(heap, nodeIndex)){
+              return;
+       }
        int parent_index = parentIdx(heap, nodeIndex);
+       if(invalid_index(heap, parent_index)){
+              return;
+       }
        while(nodeIndex > 1 && heap->arr[parent_index].priority > heap->arr[nodeIndex].priority){
              if(!invalid_index(heap, parent_index) && !invalid_index(heap, nodeIndex)){
               swap(heap, nodeIndex, parent_index);
@@ -112,11 +118,18 @@ void bubbleUp(MinHeap* heap, int nodeIndex){
 }
 
 int find_least_priority_index(MinHeap * heap, int self_index, int leftIndex, int rightIndex){
-
+       //returns the index at which the node has the least priority
+       //precondition: slef_index is a valid index
        int smaller_priority_index;
        int least_priority_index;
 
 
+       if(invalid_index(heap, leftIndex)){
+              return self_index;
+       }
+       if(invalid_index(heap, rightIndex)){
+              return min_index(heap, self_index, leftIndex);
+       }
        HeapNode leftNode = heap->arr[leftIndex];
        HeapNode rightNode = heap->arr[rightIndex];
        HeapNode selfNode= heap->arr[self_index];
@@ -147,7 +160,7 @@ void bubbleDown(MinHeap* heap){
        int left_index = leftIdx(heap, self_index);
        int right_index = rightIdx(heap, self_index);
        int least_priority_index = find_least_priority_index(heap, self_index, left_index, right_index);
-       if(least_priority_index == NOTHING){
+       if(invalid_index(heap, least_priority_index)){
            if(invalid_index(heap, left_index)){
               return;
            }
