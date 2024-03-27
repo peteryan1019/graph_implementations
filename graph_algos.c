@@ -146,11 +146,25 @@ EdgeList* makePath(Edge* distTree, int vertex, int startVertex, int numVertices)
     return path;
 }
 
-
+Edge * copyContents(Graph * graph, Records * records){
+  Edge * tree = malloc(graph->numVertices * sizeof(Edge));
+  for(int i=0; i< graph->numVertices; i++){
+    tree[i] = records->tree[i];
+  }
+  return tree;
+}
 /*************************************************************************
  ** Required functions
  *************************************************************************/
-
+void deleteRecords(Records* records) {
+    if (records != NULL) {
+        free(records->finished);
+        deleteHeap(records->heap);  // Assuming you have a function to properly free the MinHeap structure.
+        free(records->tree);
+        free(records->predecessors);
+        free(records);
+    }
+}
 Edge* getMSTprim(Graph* graph, int startVertex){
   /* Runs Prim's algorithm on Graph 'graph' starting from vertex with ID
  * 'startVertex', and return the resulting MST: an array of Edges.
@@ -178,7 +192,10 @@ Edge* getMSTprim(Graph* graph, int startVertex){
       }
     }
   }
-  Edge * tree = records->tree;
+
+  Edge * tree = copyContents(graph, records);
+  
+  deleteRecords(records);
   return tree;
 }
 
@@ -216,7 +233,9 @@ Edge* getDistanceTreeDijkstra(Graph* graph, int startVertex){
       }
     }
   }
-  return records->tree;
+  Edge * tree = copyContents(graph, records);
+  deleteRecords(records);
+  return tree;
 }
 
 EdgeList** getShortestPaths(Edge* distTree, int numVertices, int startVertex){
