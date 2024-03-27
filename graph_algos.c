@@ -159,7 +159,7 @@ Edge * copyContents(Graph * graph, Records * records){
 void deleteRecords(Records* records) {
     if (records != NULL) {
         free(records->finished);
-        deleteHeap(records->heap);  // Assuming you have a function to properly free the MinHeap structure.
+        deleteHeap(records->heap);  
         free(records->tree);
         free(records->predecessors);
         free(records);
@@ -233,6 +233,8 @@ Edge* getDistanceTreeDijkstra(Graph* graph, int startVertex){
       }
     }
   }
+  
+  free(distances);
   Edge * tree = copyContents(graph, records);
   deleteRecords(records);
   return tree;
