@@ -241,42 +241,7 @@ void freePaths(EdgeList** paths, int numVertices) {
 }
 
 int main(int argc, char* argv[]) {
-  // Graph * graph = newGraph(3);
-  // graph->numEdges = 3;
-  // graph->numVertices = 3;
-  
-  // Vertex * v0 = newVertex(0, NULL, )
-  // v0->id = 0;
-  // Edge * edge1 = calloc(1, sizeof(Edge));
-  // edge1->fromVertex = 0;
-  // edge1->toVertex = 1;
-  // edge1->weight = 1;
-  // Edge * edge2 = calloc(1, sizeof(Edge));
-  // edge2->fromVertex = 0;
-  // edge2->toVertex = 2;
-  // edge2->weight = 5;
-  // v0->adjList->edge = edge1;
-  // v0->adjList->next->edge = edge2;
-  // v0->adjList->next->next = NULL;
-  // graph->vertices[0] = v0;
 
-  // Vertex * v1 = calloc(1, sizeof(Vertex));
-  // v1->id = 1;
-  // Edge * edge3 = malloc(sizeof(Edge));
-  // edge3->fromVertex = 1;
-  // edge3->toVertex = 2;
-  // edge3->weight = 2;
-  // v1->adjList->edge = edge3;
-  // v1->adjList->next = NULL;
-
-  // Vertex* v2 = calloc(1, sizeof(Vertex));
-  // v2->id = 2;
-  // v2->adjList = NULL;
-
-  // Edge * tree = getDistanceTreeDijkstra(graph, 0);
-  // printTree(tree, graph->numEdges);
-
-  //===========================================
   if (argc == 1) {
     printf("You did not specify an input file. Please, try again.\n");
     return 1;
